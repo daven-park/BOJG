@@ -26,21 +26,21 @@ for i in range(N - 1):
 
 
 visited = [0] * (N + 1)
-def dfs_outside(node, inside_count): # 사이에 실외가 있는 구간 카운트
+def dfs_outside(node): # 사이에 실외가 있는 구간 카운트
     visited[node] = True
-
+    inside_count = 0
     for neighbor in graph[node]:
         if place[neighbor] == 1:    # 실내일때
             inside_count += 1
         elif not visited[neighbor] and place[neighbor] == 0:   # 실외이고 아직 방문하지 않았을 때
-            inside_count += dfs_outside(neighbor, inside_count) # dfs
+            inside_count += dfs_outside(neighbor) # dfs
 
     return inside_count
 
 sum_count = 0
 for i in range(1, N + 1):
     if place[i] == 0 and not visited[i]:    # 실외인 노드를 기준으로 dfs
-        k = dfs_outside(i, 0)
+        k = dfs_outside(i)
         sum_count += k * (k - 1)
 
 print(count + sum_count)
