@@ -12,11 +12,10 @@ for i in range(N):
     for j in range(M):
         if maps[i][j] == 2:
             start = (i, j)
-visited = [[False] * M for _ in range(N)]
+            
 ans = [[-1] * M for _ in range(N)]
 def bfs():
     queue = deque([(start[0], start[1], 0)])
-    visited[start[0]][start[1]] = True
     ans[start[0]][start[1]] = 0
     while queue:
         curX, curY, dist = queue.popleft()
