@@ -1,23 +1,18 @@
 import sys
+from collections import deque
 
-#정수 4를 1, 2, 3의 합으로 나타내는 방법은 총 7가지가 있다. 합을 나타낼 때는 수를 1개 이상 사용해야 한다.
+input = sys.stdin.readline
 
-T = int(input())
+N = int(input())
 
-arr = [1, 2, 3]
-for t in range(T):
-    N = int(input())
-    ans = 0
-    def func(k, selected, count):
-        global ans
-        if k == count:
-            if sum(selected) == N:
-                ans += 1
-            return
-        for i in range(0, len(arr)):
-            func(k + 1, selected + [arr[i]], count)
+dp = [0 for _ in range(11)]
+dp[1] = 1
+dp[2] = 2
+dp[3] = 4
+for i in range(4, 11):
+    dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3]
 
-    for i in range(1, N + 1):
-        func(0, [], i)
 
-    print(ans)
+for _ in range(N):
+    num = int(input())
+    print(dp[num])
