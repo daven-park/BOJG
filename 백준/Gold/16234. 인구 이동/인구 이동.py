@@ -2,6 +2,7 @@ import math
 import sys
 from collections import deque
 
+
 input = sys.stdin.readline
 
 N, L, R = map(int, input().split())
@@ -43,21 +44,12 @@ def bfs(x, y, visited):
 
     return inner_flag
 
-def check_all_same_person():
-    start = board[0][0]
-    for i in range(0, N):
-        for j in range(1, N):
-            if board[i][j] != start:
-                return False
-
-    return True
-
 flag = True
 time = 0
 
 while True:
     # 모두 L <= R이나 같은 값으로 통일일 경우 or 한칸도 이동할 곳이 없을겨우
-    if check_all_same_person() or not flag:
+    if not flag:
         break
 
     flag = False
