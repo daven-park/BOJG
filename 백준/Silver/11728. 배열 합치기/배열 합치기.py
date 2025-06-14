@@ -1,12 +1,11 @@
 import sys
-from collections import deque
 
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
 
-A = sorted(list(map(int, input().split())))
-B = sorted(list(map(int, input().split())))
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
 
 answer = []
 
